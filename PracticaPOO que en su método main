@@ -1,0 +1,100 @@
+import java.util.Random;
+
+class Coche {
+    private String marca;
+    private String modelo;
+    private int litrosDeAceite;
+    private double precioAverias;
+
+    public Coche(String marca, String modelo) {
+        this.marca = marca;
+        this.modelo = modelo;
+        this.litrosDeAceite = 0;
+        this.precioAverias = 0;
+    }
+
+    public String getMarca() {
+        return marca;
+    }
+
+    public String getModelo() {
+        return modelo;
+    }
+
+    public int getLitrosDeAceite() {
+        return litrosDeAceite;
+    }
+
+    public double getPrecioAverias() {
+        return precioAverias;
+    }
+
+    public void acumularAveria(double costo) {
+        this.precioAverias += costo;
+    }
+
+    public void incrementarAceite(int cantidad) {
+        this.litrosDeAceite += cantidad;
+    }
+}
+
+class Garaje {
+    private Coche cocheActual;
+    private String averiaActual;
+    private int cochesAtendidos;
+
+    public Garaje() {
+        this.cocheActual = null;
+        this.averiaActual = "";
+        this.cochesAtendidos = 0;
+    }
+
+    public boolean aceptarCoche(Coche coche, String averia) {
+        if (this.cocheActual != null) {
+            return false;
+        }
+        this.cocheActual = coche;
+        this.averiaActual = averia;
+        this.cochesAtendidos++;
+        double costoAveria = new Random().nextDouble() * 100;
+        coche.acumularAveria(costoAveria);
+        if (averia.equalsIgnoreCase("aceite")) {
+            coche.incrementarAceite(10);
+        }
+        System.out.println("Coche aceptado: " + coche.getMarca() + " " + coche.getModelo() + " - Avería: " + averia + " - Costo: " + costoAveria);
+        return true;
+    }
+
+    public void devolverCoche() {
+        if (this.cocheActual != null) {
+            System.out.println("Coche devuelto: " + cocheActual.getMarca() + " " + cocheActual.getModelo());
+        }
+        this.cocheActual = null;
+        this.averiaActual = "";
+    }
+
+    public int getCochesAtendidos() {
+        return cochesAtendidos;
+    }
+}
+
+public class PracticaPOO {
+    public static void main(String[] args) {
+        Garaje garaje = new Garaje();
+        Coche coche1 = new Coche("Toyota", "Corolla");
+        Coche coche2 = new Coche("Ford", "Fiesta");
+
+        for (int i = 0; i < 2; i++) {
+            if (garaje.aceptarCoche(coche1, "aceite")) {
+                garaje.devolverCoche();
+            }
+            if (garaje.aceptarCoche(coche2, "motor")) {
+                garaje.devolverCoche();
+            }
+        }
+
+        System.out.println("Información de los coches:");
+        System.out.println(coche1.getMarca() + " " + coche1.getModelo() + " - Precio Averías: " + coche1.getPrecioAverias() + " - Litros de aceite: " + coche1.getLitrosDeAceite());
+        System.out.println(coche2.getMarca() + " " + coche2.getModelo() + " - Precio Averías: " + coche2.getPrecioAverias() + " - Litros de aceite: " + coche2.getLitrosDeAceite());
+    }
+}
