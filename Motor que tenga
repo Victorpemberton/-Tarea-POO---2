@@ -1,0 +1,25 @@
+class Motor {
+    private int litrosDeAceite;
+    private int potencia;
+
+    public Motor(int potencia) {
+        this.potencia = potencia;
+        this.litrosDeAceite = 0;
+    }
+
+    public int getLitrosDeAceite() {
+        return litrosDeAceite;
+    }
+
+    public void setLitrosDeAceite(int litrosDeAceite) {
+        this.litrosDeAceite = litrosDeAceite;
+    }
+
+    public int getPotencia() {
+        return potencia;
+    }
+
+    public void setPotencia(int potencia) {
+        this.potencia = potencia;
+    }
+}
