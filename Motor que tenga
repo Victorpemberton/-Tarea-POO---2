@@ -1,4 +1,4 @@
-class Motor {
+cclass Motor {
     private int litrosDeAceite;
     private int potencia;
 
@@ -11,15 +11,16 @@ class Motor {
         return litrosDeAceite;
     }
 
-    public void setLitrosDeAceite(int litrosDeAceite) {
-        this.litrosDeAceite = litrosDeAceite;
-    }
-
     public int getPotencia() {
         return potencia;
+    }
+
+    public void setLitrosDeAceite(int litrosDeAceite) {
+        this.litrosDeAceite = litrosDeAceite;
     }
 
     public void setPotencia(int potencia) {
         this.potencia = potencia;
     }
 }
+
