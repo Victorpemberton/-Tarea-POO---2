@@ -1,0 +1,34 @@
+class Garaje {
+    private Coche cocheActual;
+    private String averiaActual;
+    private int cochesAtendidos;
+
+    public Garaje() {
+        this.cocheActual = null;
+        this.averiaActual = "";
+        this.cochesAtendidos = 0;
+    }
+
+    public boolean aceptarCoche(Coche coche, String averia) {
+        if (this.cocheActual != null) {
+            return false; 
+        }
+        this.cocheActual = coche;
+        this.averiaActual = averia;
+        this.cochesAtendidos++;
+        System.out.println("Coche aceptado: " + coche.getMarca() + " " + coche.getModelo() + " - Avería: " + averia);
+        return true;
+    }
+
+    public void devolverCoche() {
+        if (this.cocheActual != null) {
+            System.out.println("Coche devuelto: " + cocheActual.getMarca() + " " + cocheActual.getModelo());
+        }
+        this.cocheActual = null;
+        this.averiaActual = "";
+    }
+
+    public int getCochesAtendidos() {
+        return cochesAtendidos;
+    }
+}
